@@ -15,6 +15,6 @@ global $infos;
 <?php get_template_part('/parts/home/destiny'); ?>
 <?php get_template_part('/parts/home/topics'); ?>
 <?php get_template_part('/parts/home/testimonials');?>
-
+<?php get_template_part('/parts/home/companys');?>
 
 <?php get_footer() ; ?>

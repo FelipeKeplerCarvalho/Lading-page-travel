@@ -26,6 +26,8 @@ class CTR_home {
         $info->test_title = get_field('title_testimonials'); 
         $info->depoimentos = get_field('depoimentos'); 
 
+        $info->company = get_field('icones_das_empresas');
+
         return $info;
     }
 
