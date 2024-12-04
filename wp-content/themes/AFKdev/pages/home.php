@@ -16,5 +16,6 @@ global $infos;
 <?php get_template_part('/parts/home/topics'); ?>
 <?php get_template_part('/parts/home/testimonials');?>
 <?php get_template_part('/parts/home/companys');?>
+<?php get_template_part('/parts/home/news_form');?>
 
 <?php get_footer() ; ?>

@@ -533,9 +533,12 @@
     }
 }
 
+.swiper-pagination {
+    filter: grayscale(1);
+}
+
+
 // Companys
-
-
 
 #company {
     margin-bottom: 200px;
@@ -551,6 +554,7 @@
                 display: flex;
                 align-items: center;
                 transition: ease all 0.3s;
+
                 img {
                     filter: grayscale(1);
                     margin: 0 auto;
@@ -562,10 +566,108 @@
     }
 }
 
-.ativo{
-    img{
+.ativo {
+    img {
         transform: scale(1.3);
-        filter: initial!important;
+        filter: initial !important;
     }
 }
 
+
+.swiper-pagination2 {
+    display: flex;
+    justify-content: center;
+    filter: grayscale(1);
+}
+
+// Form
+
+#Form {
+    margin-bottom: 200px;
+    .form-bg {
+        position: relative;
+        .form-holder {
+            position: relative;
+            padding: 60px 140px;
+            border-radius: 129px 20px 20px 20px;
+            background-color: #F9F7FE;
+
+            h2 {
+                color: var(--TEXT-CLR, #5E6282);
+                text-align: center;
+                font-family: Poppins;
+                font-size: 33px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 54px;
+                margin: 80px auto 80px auto;
+            }
+
+            form {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                z-index: 1;
+                position: relative;
+
+                input {
+                    color: var(--TEXT-COLOR, #39425D);
+                    font-family: Montserrat;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    width: 400px;
+                    border: none;
+                    border-radius: 10px;
+                }
+
+                button {
+                    padding: 20px 50px;
+                    border: none;
+                    color: var(--white, #FFF);
+                    text-align: center;
+                    font-family: "Open Sans";
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    border-radius: 10px;
+                    background: var(--gradient, linear-gradient(180deg, #FF946D 0%, #FF7D68 100%));
+                    transition: all ease 0.3s;
+
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .arrow-img {
+                position: absolute;
+                top: -20px;
+                right: -20px;
+            }
+            .plus{
+                position: absolute;
+                right: -100px;
+                bottom: -60px;
+                z-index: -1;
+            }
+
+            &::before {
+                content: url(../img/form/top.png);
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &:after {
+                content: url(../img/form/bottom.png);
+                position: absolute;
+                bottom: 0px;
+                left: -90px;
+            }
+
+        }
+    }
+}

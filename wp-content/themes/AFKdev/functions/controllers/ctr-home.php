@@ -1,11 +1,58 @@
-<?php 
+<?php
 
 
-class CTR_home {
+class CTR_home
+{
 
 
-    public static function get_info(){
+    public function __construct()
+    {
+        add_action('wp_ajax_send_news', array($this, 'enviar_form')); // wp_ajax é um hook , da pra ler assim wp_ajax_{action} , send news é o valor do campo action?
+        add_action('wp_ajax_nopriv_send_news', array($this, 'enviar_form'));
+    }
 
+    // Quando você quer registrar um método de uma classe como callback para um hook, o WordPress precisa saber duas coisas:
+    // A classe onde o método está localizado. e O método a ser chamado.
+
+    // A ação wp_ajax_{minhaFuncao} serve para disponibilizar uma requisição AJAX no WordPress apenas com o usuário logado e dentro do painel administrativo do CMS (wp-admin).
+    // Enquanto a ação wp_ajax_nopriv_{minhaFuncao} serve para disponibilizar uma requisição AJAX pelo frontend do site, para visitantes não autenticados.
+
+    //requisição AJAX é todo o processo então? da requisição até a resposta? Sim
+
+
+    // FORM
+    public static function enviar_form()
+    //O método enviar_form é essencial porque ele age como o manipulador da requisição AJAX no servidor.
+    //Você pode implementar qualquer lógica que precise ser executada no servidor.
+    //Entre outras coisas que eu posso aprender no futuro
+    {
+        // Verifica se o campo de e-mail foi enviado
+        if (empty($_POST['E-mail'])) {
+            wp_send_json_error(['message' => 'Por favor, insira um e-mail válido.']);
+        }
+
+        $email = sanitize_email($_POST['E-mail']);
+
+        if (!is_email($email)) {
+            wp_send_json_error(['message' => 'Endereço de e-mail inválido.']);
+        }
+
+        // Configuração do e-mail
+        $to = 'felipekc28@hotmail.com'; 
+        $subject = 'Novo cadastro na newsletter';
+        $body = "Um novo e-mail foi cadastrado na newsletter: $email";
+        $headers = ['Content-Type: text/html; charset=UTF-8'];
+
+        // Envia o e-mail
+        if (wp_mail($to, $subject, $body, $headers)) {
+            wp_send_json_success(['message' => 'Cadastro realizado com sucesso!']);
+        } else {
+            wp_send_json_error(['message' => 'Erro ao enviar o e-mail. Tente novamente mais tarde.']);
+        }
+    }
+
+    public static function get_info()
+    {
 
         $info = new stdClass();
 
@@ -23,13 +70,16 @@ class CTR_home {
         $info->bene_img = get_field('imagem_bene');
 
         $info->test_sub = get_field('sub_title_testimonials');
-        $info->test_title = get_field('title_testimonials'); 
-        $info->depoimentos = get_field('depoimentos'); 
+        $info->test_title = get_field('title_testimonials');
+        $info->depoimentos = get_field('depoimentos');
 
         $info->company = get_field('icones_das_empresas');
 
+        $info->form = get_field('cta_newsletter');
+
         return $info;
     }
-
-
 }
+
+
+new CTR_home;
