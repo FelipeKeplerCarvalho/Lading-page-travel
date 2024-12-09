@@ -7,11 +7,11 @@
                 and full life</h1>
             <p>Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.</p>
             <div class="btn-hero-holder">
-                <a href="">Find out more</a>
-                <a href=""><img src="" alt=""><span>Play Demo</span></a>
+                <a href="#news-form">Find out more</a>
+                <a href="https://www.youtube.com/watch?v=MuYy0pt-VuU" class="btn-play" data-fancybox="video-gallery"><img src="<?php echo get_template_directory_uri() ;?>/assets/img/hero/arrow-p.svg" alt=""></a>
             </div>
         </div>
-        <picture>
+        <picture class="hero-img">
             <img src="<?php echo get_template_directory_uri() . '/assets/img/hero/Traveller.png'; ?>" alt="">
             <img  class="plane1" src="<?php echo get_template_directory_uri(). '/assets/img/hero/cartonplane.png';?>" alt="">
             <img class="plane2" src="<?php echo get_template_directory_uri(). '/assets/img/hero/cartonplane.png';?>" alt="">

@@ -17,8 +17,6 @@ class CTR_home
     // A ação wp_ajax_{minhaFuncao} serve para disponibilizar uma requisição AJAX no WordPress apenas com o usuário logado e dentro do painel administrativo do CMS (wp-admin).
     // Enquanto a ação wp_ajax_nopriv_{minhaFuncao} serve para disponibilizar uma requisição AJAX pelo frontend do site, para visitantes não autenticados.
 
-    //requisição AJAX é todo o processo então? da requisição até a resposta? Sim
-
 
     // FORM
     public static function enviar_form()
@@ -27,14 +25,14 @@ class CTR_home
     //Entre outras coisas que eu posso aprender no futuro
     {
         // Verifica se o campo de e-mail foi enviado
-        if (empty($_POST['E-mail'])) {
-            wp_send_json_error(['message' => 'Por favor, insira um e-mail válido.']);
+        if (empty($_POST['E-mail'])) { // Tirar esses traços
+            wp_send_json_error(['message' => 'Please enter a valid email address']);
         }
 
         $email = sanitize_email($_POST['E-mail']);
 
         if (!is_email($email)) {
-            wp_send_json_error(['message' => 'Endereço de e-mail inválido.']);
+            wp_send_json_error(['message' => 'Please enter a valid email address.']);
         }
 
         // Configuração do e-mail
@@ -45,7 +43,7 @@ class CTR_home
 
         // Envia o e-mail
         if (wp_mail($to, $subject, $body, $headers)) {
-            wp_send_json_success(['message' => 'Cadastro realizado com sucesso!']);
+            wp_send_json_success(['message' => 'Registration completed successfully!']);
         } else {
             wp_send_json_error(['message' => 'Erro ao enviar o e-mail. Tente novamente mais tarde.']);
         }

@@ -13,14 +13,14 @@
 	<header>
 		<div class="header-content container">
 			<img src="<?php echo get_template_directory_uri(). '/assets/img/header/Logo.png' ;?>" alt="">
-			<div>
-				<ul>
-					<li>Destinations</li>
-					<li>Hotels</li>
-					<li>Flights</li>
-					<li>Bookins</li>
-					<li>Sing Up</li>
-				</ul>
+			<div class="desktop-only">
+				<?php wp_nav_menu( array( 'menu-cabecalho' => 'Menu cabecalho' )); ?>
 			</div>
+			<div class="mobile-only btn-mobile-header">
+				<img class="active-img" src="<?php echo get_template_directory_uri();?> /assets/img/commum/mobile-menu.svg" alt="">
+			</div>
+		</div>
+		<div class="menu-mobile mobile-only">
+			<?php wp_nav_menu(array('menu-cabecalho' => 'Menu cabecalho')) ;?>
 		</div>
 	</header>

@@ -81,7 +81,21 @@ function labbo_scripts()
 	//	JQUERY
 	wp_enqueue_script("jquery");
 
+	//Fancy Box
+	wp_enqueue_style(
+        'fancybox-css',
+        'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css',
+        array(), // Dependências, se houver
+        null     // Versão (null para evitar cache)
+    );
 
+	wp_enqueue_script(
+        'fancybox-js',
+        'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js',
+        array(), // Dependências de outros scripts, como jQuery, se necessário
+        null,    // Versão
+        true     // Carrega no footer
+    );
 
 	//	FONTAWESOME
 	wp_enqueue_style('Font Awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', array(), time(), 'all');
@@ -128,7 +142,7 @@ function labbo_scripts()
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), '10.0.4', true);
 
 	wp_enqueue_style('labbo-style', get_template_directory_uri() . '/assets/css/afkdev.css', array(), time(), 'all');
-	// wp_enqueue_script('labbo-script', get_template_directory_uri() . '/assets/js/labbo-script.js', array(), time(), true);
+	wp_enqueue_script('labbo-script', get_template_directory_uri() . '/assets/js/afkdev.js', array(), time(), true);
 
 	$template_name = show_template();
 
@@ -144,4 +158,14 @@ function labbo_scripts()
 add_action('wp_enqueue_scripts', 'labbo_scripts'); // add_action alternatives: wp_enqueue_scripts, get_footer
 
 
-;
+function register_menu(){
+	register_nav_menus(
+		array(
+		  'menu-cabecalho' => 'Menu cabecalho',
+		  'menu-rodape' => 'Menu rodape'
+		)
+	  );
+}
+
+
+add_action('after_setup_theme','register_menu');
